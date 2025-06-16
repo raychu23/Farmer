@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Plant
+  - Bush
+  - Crop
+  - Enemy
+  - Seed
+  - Sapling
+  - FullGrown
+  - Clone1
+  - Clone2
+  - Plot1
+  - Plot2
+  - Plot3
+  - Plot4
+  - Plot5
+  - Plot6
+  - Clone3
+  - Clone4
+  - Clone5
+  - Clone6
+  - Damage Volume
+  - Rock
+  - Tree
+  - Plant1
+  - Plant2
+  - Plant3
+  - table
+  - Selection
+  - Selected
+  - PrevSelected
+  - Sound
+  - Quest
+  - Pesticide
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Player
+  - 
+  - Camera
+  - Information
+  - Interactable
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Dynamic
+    uniqueID: 3010279593
+    locked: 0

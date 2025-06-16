@@ -1,0 +1,101 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using TMPro;
+using UnityEngine.EventSystems;
+
+
+public class Water : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
+{
+    public int amount;
+    private GameObject imageObj;
+    private GameObject amountObj;
+    public int slotIndex;
+    public Sound invSound;
+    public GameObject water;
+    public Multiselect multi;
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        imageObj = this.transform.GetChild(1).gameObject;
+        amountObj = this.transform.GetChild(3).gameObject;
+        amount = 10;
+    }
+
+    private void Update()
+    {
+
+        if (Global.season > 3)
+        {
+            imageObj.SetActive(true);
+            amount = Global.water;
+            amountObj.GetComponent<TextMeshProUGUI>().SetText(amount.ToString());
+        }
+    }
+
+    public void Deselect()
+    {
+        this.transform.GetChild(4).gameObject.SetActive(false);
+        water.SetActive(false);
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("Selected");
+        foreach(GameObject obj in objs)
+        {
+            obj.SetActive(false);
+        }
+
+        for(int i = 0; i < 6; i++)
+        {
+            multi.plotsSelected[i] = false;
+        }
+    }
+
+    //Selection of a slot
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        invSound.PlayInventorySound();
+        if (Global.slotSelected != this.slotIndex)
+        {
+            if (Global.slotSelected != -1)
+            {
+                this.transform.parent.GetChild(Global.slotSelected).GetComponent<Slot>().Deselect();
+            }
+
+            this.transform.GetChild(4).gameObject.SetActive(true);
+            Global.slotSelected = this.slotIndex;
+        }
+        else
+        {
+            this.transform.GetChild(4).gameObject.SetActive(false);
+            Global.slotSelected = -1;
+        }
+    }
+
+    //Hover
+    public void OnPointerEnter(PointerEventData eventdata)
+    {
+        if(Global.season >= 4)
+        {
+            this.transform.GetChild(1).gameObject.SetActive(false);
+            this.transform.GetChild(2).gameObject.SetActive(false);
+            this.transform.GetChild(3).gameObject.SetActive(false);
+            this.transform.GetChild(5).gameObject.SetActive(true);
+            this.transform.GetChild(6).gameObject.SetActive(true);
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventdata)
+    {
+        if(Global.season >= 4)
+        {
+            this.transform.GetChild(1).gameObject.SetActive(true);
+            this.transform.GetChild(2).gameObject.SetActive(true);
+            this.transform.GetChild(3).gameObject.SetActive(true);
+            this.transform.GetChild(5).gameObject.SetActive(false);
+            this.transform.GetChild(6).gameObject.SetActive(false);
+        }
+
+    }
+}
+
